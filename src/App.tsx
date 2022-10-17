@@ -1,34 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
+import {
+  ColumnDirective,
+  ColumnsDirective,
+  Filter,
+  GridComponent,
+  Group,
+  Inject, Page, PageSettingsModel, Search,
+  Sort, SortSettingsModel, Toolbar
+} from '@syncfusion/ej2-react-grids';
+import { data } from './DataSource';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const pageSettings: PageSettingsModel = { pageSize: 10 };
+  const sortSettings: SortSettingsModel = {
+    columns: [
+      { field: 'EmployeeID', direction: 'Descending' }
+    ]
+  };
+  const filterSettings = {
+    columns: [
+      { field: 'EmployeeID', operator: 'greaterthan', value: 2 }
+    ]
+  };
 
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+  const groupSettings = { columns: ['EmployeeID'] };
+  return <GridComponent
+    allowPaging={true}
+    pageSettings={pageSettings}
+    allowSorting={true}
+    sortSettings={sortSettings}
+    allowFiltering={false}
+    filterSettings={filterSettings}
+    allowGrouping={false}
+    groupSettings={groupSettings}
+    searchSettings={{
+      fields: ['CustomerID'],
+      ignoreCase: true,
+      key: 'Ha',
+      operator: 'contains'
+    }}
+    toolbar={['Search']}
+    dataSource={data}>
+    <ColumnsDirective>
+      <ColumnDirective field='OrderID' width='100' textAlign="Right"/>
+      <ColumnDirective field='CustomerID' width='100'/>
+      <ColumnDirective field='EmployeeID' width='100' textAlign="Right"/>
+      <ColumnDirective field='Freight' width='100' format="C2" textAlign="Right"/>
+      <ColumnDirective field='ShipCountry' width='100'/>
+    </ColumnsDirective>
+    <Inject services={[Page, Sort, Filter, Search, Toolbar, Group]}/>
+  </GridComponent>;
 }
 
 export default App
