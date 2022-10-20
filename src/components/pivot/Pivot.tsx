@@ -11,7 +11,7 @@ export function Pivot() {
   const dataSourceSettings: IDataOptions = {
     dataSource: remoteData,
     type: 'JSON',
-    expandAll: true,
+    expandAll: false,
     filters: [],
     columns: [{ name: 'ProductName', caption: 'Product Name' }],
     rows: [{ name: 'ShipCountry', caption: 'Ship Country' }, { name: 'ShipCity', caption: 'Ship City' }],
@@ -24,6 +24,7 @@ export function Pivot() {
       <PivotViewComponent
         id={'PivotView'}
         width={'100%'}
+        height={'100%'}
         dataSourceSettings={dataSourceSettings}
       >
       </PivotViewComponent>
