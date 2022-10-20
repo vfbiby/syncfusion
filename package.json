@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "@syncfusion/ej2-react-grids": "^20.3.48",
+    "@syncfusion/ej2-react-pivotview": "^20.2.45",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",
