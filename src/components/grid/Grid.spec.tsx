@@ -1,11 +1,11 @@
-import { render, screen } from "@testing-library/react";
-import { Grid } from "./Grid";
+import { render, screen, waitFor } from '@testing-library/react';
+import { Grid } from './Grid';
 
-describe("Grid", () => {
-  describe("Layout", () => {
-    it("should show title", () => {
-      render(<span>hi</span>);
-      expect(screen.getByText("hi")).toBeInTheDocument();
+describe('Grid', () => {
+  describe('Layout', () => {
+    it('should show title', async () => {
+      render(<Grid />);
+      await waitFor(() => expect(screen.getByText('Search')).toBeInTheDocument());
     });
   });
 });
