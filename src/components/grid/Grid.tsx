@@ -1,7 +1,9 @@
 import {
+  Column,
   ColumnDirective,
   ColumnsDirective,
   Filter,
+  FilterEventArgs,
   GridComponent,
   Group,
   Inject,
@@ -13,6 +15,7 @@ import {
   Toolbar
 } from '@syncfusion/ej2-react-grids';
 import { data } from './DataSource';
+import { EmitType } from '@syncfusion/ej2-base';
 
 export function Grid() {
   let grid: GridComponent | null;
@@ -30,6 +33,9 @@ export function Grid() {
   };
 
   const groupSettings = { columns: ['EmployeeID'] };
+  const hello = (type: EmitType<FilterEventArgs>) => {
+    console.log()
+  }
 
   return (<div>
     <div className={"p-2 flex gap-2"}>
@@ -56,6 +62,7 @@ export function Grid() {
       <button onClick={() => {
         if (grid) {
           console.log('refreshing');
+          console.log(grid.columns.map(column => (column as Column).headerText));
           grid.refresh();
         }
       }} className={"bg-blue-400 p-2 rounded text-white"}>Refresh
@@ -63,6 +70,7 @@ export function Grid() {
     </div>
     <GridComponent
       ref={g => grid = g}
+      actionBegin={hello}
       allowPaging={true}
       pageSettings={pageSettings}
       allowSorting={true}

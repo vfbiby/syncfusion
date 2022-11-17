@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@syncfusion/ej2-base": "^20.3.50",
     "@syncfusion/ej2-data": "^20.3.48",
     "@syncfusion/ej2-react-grids": "^20.3.48",
     "@syncfusion/ej2-react-pivotview": "^20.3.48",
