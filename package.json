@@ -7,6 +7,7 @@
     "dev": "vite",
     "test": "vitest",
     "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
@@ -20,12 +21,13 @@
     "react-router-dom": "^6.4.2"
   },
   "devDependencies": {
-    "@types/testing-library__jest-dom": "^5.14.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
+    "@types/testing-library__jest-dom": "^5.14.5",
     "@vitejs/plugin-react": "^2.1.0",
+    "@vitest/coverage-istanbul": "^0.25.2",
     "@vitest/ui": "^0.25.2",
     "autoprefixer": "^10.4.12",
     "happy-dom": "^7.7.0",

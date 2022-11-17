@@ -7,8 +7,22 @@ export default defineConfig({
   plugins: [react()],
   test: {
     globals: true,
-    environment: "happy-dom",
-    exclude: [...configDefaults.exclude, "packages/template/*"],
-    setupFiles: "./src/test.setup.ts",
+    environment: 'happy-dom',
+    exclude: [...configDefaults.exclude, 'packages/template/*'],
+    setupFiles: './src/test.setup.ts',
+    coverage: {
+      provider: 'istanbul',
+      statements: 89,
+      all: true,
+      include: ['src/**'],
+      exclude: [
+        '**/*.{test,spec}.{ts,tsx,js,jsx}',
+        '**/*.stories.{ts,tsx,js,jsx}',
+        '**/tests/**',
+        '**/stories/**',
+        'src/main.tsx',
+        'src/pages/test/**',
+      ],
+    },
   },
 });
