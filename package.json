@@ -13,12 +13,23 @@
   },
   "dependencies": {
     "@syncfusion/ej2-base": "^20.3.50",
+    "@syncfusion/ej2-buttons": "^20.3.57",
+    "@syncfusion/ej2-calendars": "^20.3.56",
     "@syncfusion/ej2-data": "^20.3.48",
+    "@syncfusion/ej2-dropdowns": "^20.3.57",
+    "@syncfusion/ej2-grids": "^20.3.57",
+    "@syncfusion/ej2-inputs": "^20.3.57",
+    "@syncfusion/ej2-lists": "^20.3.56",
+    "@syncfusion/ej2-navigations": "^20.3.57",
+    "@syncfusion/ej2-notifications": "^20.3.56",
+    "@syncfusion/ej2-popups": "^20.3.57",
     "@syncfusion/ej2-react-grids": "^20.3.48",
     "@syncfusion/ej2-react-pivotview": "^20.3.48",
+    "@syncfusion/ej2-splitbuttons": "^20.3.56",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.4.2"
+    "react-router-dom": "^6.4.2",
+    "tailwindcss-base": "^1.0.5"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",

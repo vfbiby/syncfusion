@@ -5,7 +5,7 @@ describe('Grid', () => {
   describe('Layout', () => {
     it('should show title', async () => {
       render(<Grid />);
-      await waitFor(() => expect(screen.getByText('Search')).toBeInTheDocument());
+      await waitFor(() => expect(screen.getAllByText('HANAR').length).toEqual(2));
     });
   });
 });
