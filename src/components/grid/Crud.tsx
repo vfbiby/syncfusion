@@ -7,7 +7,13 @@ import {
 } from '@syncfusion/ej2-react-grids';
 import React from 'react';
 import { Ajax, getValue } from '@syncfusion/ej2-base';
-import { DataResult, DataSourceChangedEventArgs, DataStateChangeEventArgs, Edit } from '@syncfusion/ej2-grids';
+import {
+  DataResult,
+  DataSourceChangedEventArgs,
+  DataStateChangeEventArgs,
+  Edit,
+  FilterSettingsModel,
+} from '@syncfusion/ej2-grids';
 
 export const Crud = () => {
   let gridRef: GridComponent | null;
@@ -15,6 +21,7 @@ export const Crud = () => {
   const pageSettingModel: PageSettingsModel = { pageSize: 10 };
   const editSettings: any = { allowEditing: true, allowAdding: true, allowDeleting: true };
   const toolbarOptions: string[] = ['Add', 'Edit', 'Delete', 'Update', 'Cancel'];
+  const filterSettings: FilterSettingsModel = { type: 'Excel' };
   const renderComplete = () => {
     if (gridRef && gridRef.dataSource instanceof Array && !(gridRef.dataSource as object[]).length) {
       const state = { skip: 0, take: 10 };
@@ -22,12 +29,15 @@ export const Crud = () => {
     }
   };
   const dataStateChange = (state: DataStateChangeEventArgs) => {
-    console.log('111', state);
-    orderService.execute(state).then((gridData) => {
-      if (gridRef) {
-        gridRef.dataSource = gridData;
-      }
-    });
+    if (state.action && (state.action.requestType === 'filterchoicerequest' || state.action.requestType === 'filtersearchbegin')) {
+      orderService.execute(state).then((e) => state.dataSource && state.dataSource(e));
+    } else {
+      orderService.execute(state).then((gridData) => {
+        if (gridRef) {
+          gridRef.dataSource = gridData;
+        }
+      });
+    }
   };
 
   function dataSourceChanged(state: DataSourceChangedEventArgs): void {
@@ -45,11 +55,12 @@ export const Crud = () => {
     <div className='flex'>
       <button className='p-2 rounded my-2'>Empty</button>
     </div>
-    <GridComponent ref={g => gridRef = g} dataBound={renderComplete} dataStateChange={dataStateChange} allowPaging
-                   allowGrouping allowSorting
+    <GridComponent ref={g => gridRef = g} dataBound={renderComplete} dataStateChange={dataStateChange}
+                   allowPaging allowGrouping allowSorting allowFiltering
                    toolbar={toolbarOptions}
                    editSettings={editSettings}
                    dataSourceChanged={dataSourceChanged}
+                   filterSettings={filterSettings}
                    pageSettings={pageSettingModel}>
       <ColumnsDirective>
         <ColumnDirective field='id' headerText='ID' width='30' textAlign='Right' />
