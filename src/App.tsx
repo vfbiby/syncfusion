@@ -6,6 +6,7 @@ import { SendExtraParams } from './components/grid/SendExtraParams';
 import { registerLicense } from '@syncfusion/ej2-base';
 import { HandlingError } from './components/grid/HandlingError';
 import { BindingWithAjax } from './components/grid/BindingWithAjax';
+import { CustomBinding } from './components/grid/CustomBinding';
 
 registerLicense(
   'ORg4AjUWIQA/Gnt2VVhjQlFaclhJXGJWf1ppR2Naf052flBAal5WVAciSV9jS3xSdkdjWXlbeHBdQGZYVQ==',
@@ -18,6 +19,7 @@ function App() {
     <Route path={'/grid/extra-params'} element={<SendExtraParams />} />
     <Route path={'/grid/handling-error'} element={<HandlingError />} />
     <Route path={'/grid/binding-with-ajax'} element={<BindingWithAjax />} />
+    <Route path={'/grid/custom-binding'} element={<CustomBinding />} />
     <Route path={'/pivot'} element={<Pivot />} />
   </Routes>;
 }
