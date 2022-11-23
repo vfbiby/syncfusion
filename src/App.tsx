@@ -7,6 +7,7 @@ import { registerLicense } from '@syncfusion/ej2-base';
 import { HandlingError } from './components/grid/HandlingError';
 import { BindingWithAjax } from './components/grid/BindingWithAjax';
 import { CustomBinding } from './components/grid/CustomBinding';
+import { Crud } from './components/grid/Crud';
 
 registerLicense(
   'ORg4AjUWIQA/Gnt2VVhjQlFaclhJXGJWf1ppR2Naf052flBAal5WVAciSV9jS3xSdkdjWXlbeHBdQGZYVQ==',
@@ -20,6 +21,7 @@ function App() {
     <Route path={'/grid/handling-error'} element={<HandlingError />} />
     <Route path={'/grid/binding-with-ajax'} element={<BindingWithAjax />} />
     <Route path={'/grid/custom-binding'} element={<CustomBinding />} />
+    <Route path={'/grid/crud'} element={<Crud />} />
     <Route path={'/pivot'} element={<Pivot />} />
   </Routes>;
 }

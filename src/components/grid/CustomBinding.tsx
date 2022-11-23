@@ -62,10 +62,12 @@ export class OrderService {
     this.ajax.url = `${this.BASE_URL}?${pageQuery}&$inlinecount=allpages&format=json`;
     return this.ajax.send().then((response: any) => {
       const data: any = JSON.parse(response);
-      return {
+      const newVar = {
         count: parseInt(getValue('count', data), 10),
         result: getValue('result', data),
       };
+      console.log(newVar);
+      return newVar;
     });
   }
 }
