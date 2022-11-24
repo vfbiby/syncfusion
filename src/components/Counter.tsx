@@ -20,7 +20,7 @@ export function Counter(props: CounterP) {
       <button
         className='p-2 rounded'
         aria-label='Decrement value'
-        onClick={() => props.decrement}
+        onClick={() => props.decrement()}
       >
         Decrement
       </button>

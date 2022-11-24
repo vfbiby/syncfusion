@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { Counter } from './Counter';
+import Counter from './Counter';
 import { Provider } from 'react-redux';
 import { store } from '../app/store';
 
