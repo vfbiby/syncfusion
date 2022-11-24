@@ -10,7 +10,7 @@ import { CustomBinding } from './components/grid/CustomBinding';
 import { Crud } from './components/grid/Crud';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
-import Counter from './components/Counter';
+import { Counter } from './components/Counter';
 import { ReduxGrid } from './components/grid/ReduxGrid';
 
 registerLicense(
