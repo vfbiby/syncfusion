@@ -1,11 +1,23 @@
 import { configureStore } from '@reduxjs/toolkit';
+import createSagaMiddleware from 'redux-saga';
 import counterReducer from '../features/counter/counterSlice';
+import gridReducer, { mySaga } from '../features/grid/gridSlice';
 
-export const createStore = () => configureStore({
-  reducer: {
-    counter: counterReducer,
-  },
-});
+const sagaMiddleware = createSagaMiddleware();
+export const createStore = () => {
+  const configureStore1 = configureStore({
+    reducer: {
+      counter: counterReducer,
+      hostMissions: gridReducer,
+    },
+    middleware: (getDefaultMiddleware) => {
+      return getDefaultMiddleware().concat([sagaMiddleware]);
+    },
+  });
+  sagaMiddleware.run(mySaga);
+
+  return configureStore1;
+};
 
 export const store = createStore();
 
