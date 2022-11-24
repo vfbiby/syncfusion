@@ -16,6 +16,7 @@ import {
 } from '@syncfusion/ej2-react-grids';
 import { data } from './DataSource';
 import { EmitType } from '@syncfusion/ej2-base';
+import { FilterSettingsModel, Resize } from '@syncfusion/ej2-grids';
 
 export function Grid() {
   let grid: GridComponent | null;
@@ -23,11 +24,12 @@ export function Grid() {
   const sortSettings: SortSettingsModel = {
     columns: [{ field: 'EmployeeID', direction: 'Descending' }],
   };
-  const filterSettings = {
-    columns: [
-      { field: 'EmployeeID', operator: 'greaterthan', value: 2 },
-      { field: 'CustomerID', operator: 'contains', value: 'H' },
-    ],
+  const filterSettings: FilterSettingsModel = {
+    type: 'Menu',
+    // columns: [
+    //   { field: 'EmployeeID', operator: 'greaterthan', value: 2 },
+    //   { field: 'CustomerID', operator: 'contains', value: 'H' },
+    // ],
   };
 
   const groupSettings = { columns: ['EmployeeID'] };
@@ -38,6 +40,18 @@ export function Grid() {
   return (
     <div>
       <div className={'p-2 flex gap-2'}>
+        <button onClick={() => {
+          if (grid) {
+            const selectedRow = grid.getSelectedRowIndexes()[0];
+            if (grid.getSelectedRowIndexes().length)
+              grid.dataSource.splice(selectedRow, 1);
+            else
+              alert('No records selected for delete operation');
+            grid.refresh();
+          }
+        }
+        } className='p-2'>delete
+        </button>
         <button
           onClick={() => {
             if (grid) {
@@ -85,6 +99,7 @@ export function Grid() {
       </div>
       <GridComponent
         ref={(g) => (grid = g)}
+        allowResizing
         actionBegin={hello}
         allowPaging={true}
         pageSettings={pageSettings}
@@ -95,10 +110,10 @@ export function Grid() {
         allowGrouping={false}
         groupSettings={groupSettings}
         searchSettings={{
-          fields: ['CustomerID'],
-          ignoreCase: true,
-          key: 'Ha',
-          operator: 'contains',
+          // fields: ['CustomerID'],
+          // ignoreCase: true,
+          // key: 'Ha',
+          // operator: 'contains',
         }}
         toolbar={['Search']}
         dataSource={data}
@@ -115,7 +130,7 @@ export function Grid() {
           />
           <ColumnDirective field='ShipCountry' width='100' />
         </ColumnsDirective>
-        <Inject services={[Page, Sort, Filter, Search, Toolbar, Group]} />
+        <Inject services={[Page, Sort, Filter, Resize, Search, Toolbar, Group]} />
       </GridComponent>
     </div>
   );

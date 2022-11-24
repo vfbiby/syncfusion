@@ -1,12 +1,16 @@
 import {
   ColumnDirective,
   ColumnsDirective,
-  GridComponent, Group,
-  Inject, Page,
-  PageSettingsModel, Sort, Toolbar,
+  GridComponent,
+  Group,
+  Inject,
+  Page,
+  PageSettingsModel,
+  Sort,
+  Toolbar,
 } from '@syncfusion/ej2-react-grids';
 import React from 'react';
-import { Ajax, getValue } from '@syncfusion/ej2-base';
+import { Ajax } from '@syncfusion/ej2-base';
 import {
   DataResult,
   DataSourceChangedEventArgs,
@@ -29,6 +33,7 @@ export const Crud = () => {
     }
   };
   const dataStateChange = (state: DataStateChangeEventArgs) => {
+    // @ts-ignore
     if (state.action && (state.action.requestType === 'filterchoicerequest' || state.action.requestType === 'filtersearchbegin')) {
       orderService.execute(state).then((e) => state.dataSource && state.dataSource(e));
     } else {
@@ -114,6 +119,7 @@ export class OrderService {
       type: 'DELETE',
     });
     remove.url = this.BASE_URL;
+    // @ts-ignore
     return remove.send(JSON.stringify((state.data && state.data[0]))).then((response: any) => {
       const data: any = JSON.parse(response);
       return data;
