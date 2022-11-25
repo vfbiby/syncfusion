@@ -1,5 +1,5 @@
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import { data } from '../../components/grid/DataSource';
 import { Order } from '../../app/Type';
 
@@ -23,10 +23,10 @@ const gridSlice = createSlice({
   name: 'hostMissions',
   initialState,
   reducers: {
-    fetchOrders: (state) => {
+    fetchHostMissions: (state) => {
       state.isLoading = true;
     },
-    getHostMissions: (state, action: PayloadAction<Order[]>) => {
+    fetchHostMissionsSuccess: (state, action: PayloadAction<Order[]>) => {
       console.log(action.payload);
       state.orders = action.payload;
       state.isLoading = false;
@@ -34,7 +34,7 @@ const gridSlice = createSlice({
   },
 });
 
-export const { getHostMissions, fetchOrders } = gridSlice.actions;
+export const { fetchHostMissions, fetchHostMissionsSuccess } = gridSlice.actions;
 export default gridSlice.reducer;
 
 function asyncFetchUsers() {
@@ -49,10 +49,26 @@ function asyncFetchUsers() {
   });
 }
 
+function asyncFetchOrders() {
+  return new Promise<Order[]>(resolve => {
+    setTimeout(() => {
+      resolve(data as Order[]);
+    }, 888);
+  });
+}
+
 export function* fetchUsers(action: any) {
   try {
     const users: User[] = yield call(asyncFetchUsers);
-    yield put(getHostMissions(data as Order[]));
+    // yield put(fetchHostMissionsSuccess(orders));
+  } catch (e) {
+  }
+}
+
+export function* fetchOrders(action: any) {
+  try {
+    const orders: Order[] = yield call(asyncFetchOrders);
+    yield put(fetchHostMissionsSuccess(orders));
   } catch (e) {
   }
 }
@@ -60,6 +76,7 @@ export function* fetchUsers(action: any) {
 export const fetchUsersAction = createAction('USER_FETCH');
 
 export function* rootSaga() {
-  yield takeLatest(fetchUsersAction, fetchUsers);
+  // yield takeLatest(fetchUsersAction, fetchUsers);
+  yield takeLatest(fetchHostMissions, fetchOrders);
 }
 
