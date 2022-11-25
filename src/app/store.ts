@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import counterReducer from '../features/counter/counterSlice';
-import gridReducer, { mySaga } from '../features/grid/gridSlice';
+import gridReducer, { rootSaga } from '../features/grid/gridSlice';
 
 const sagaMiddleware = createSagaMiddleware();
 export const createStore = () => {
@@ -14,7 +14,7 @@ export const createStore = () => {
       return getDefaultMiddleware().concat([sagaMiddleware]);
     },
   });
-  sagaMiddleware.run(mySaga);
+  sagaMiddleware.run(rootSaga);
 
   return configureStore1;
 };

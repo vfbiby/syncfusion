@@ -1,5 +1,5 @@
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 
 interface User {
   username: string;
@@ -16,6 +16,7 @@ const gridSlice = createSlice({
   initialState,
   reducers: {
     getHostMissions: (state, action: PayloadAction<User[]>) => {
+      console.log(action.payload);
       state.users = action.payload;
     },
   },
@@ -46,7 +47,7 @@ export function* fetchUsers(action: any) {
 
 export const fetchUsersAction = createAction('USER_FETCH');
 
-export function* mySaga() {
-  yield takeEvery(fetchUsersAction, fetchUsers);
+export function* rootSaga() {
+  yield takeLatest(fetchUsersAction, fetchUsers);
 }
 

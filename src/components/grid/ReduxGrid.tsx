@@ -1,21 +1,32 @@
 import { useAppDispatch, useAppSelector } from '../../app/hook';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { fetchUsersAction } from '../../features/grid/gridSlice';
+import { ColumnDirective, ColumnsDirective, GridComponent } from '@syncfusion/ej2-react-grids';
 
 export const ReduxGrid = () => {
   const users = useAppSelector(state => state.hostMissions.users);
   const dispatch = useAppDispatch();
+  const gridRef = useRef<GridComponent | null>(null);
+
   useEffect(() => {
-    // dispatch(fetchUsersAction());
-  }, []);
+    if (gridRef.current) gridRef.current.refresh();
+    else console.log('no gridRef');
+  }, [users]);
   return (
     <div>
-      <button onClick={() => dispatch(fetchUsersAction())} className='p-2 rounded'>fetch</button>
+      <button onClick={() => dispatch(fetchUsersAction())} className='p-2 rounded'>fetch
+      </button>
       <div className='p-2'>
-        {users.map(user => <div key={user.username}>
-          <span className='w-6 h-6 inline-block rounded-full bg-pink-200'>{user.displayName}</span>
-          <span>{user.username}</span>
-        </div>)}
+        <GridComponent ref={(g) => {
+          if (g) {
+            gridRef.current = g;
+          } else console.log('gridInstance is null!');
+        }} dataSource={users}>
+          <ColumnsDirective>
+            <ColumnDirective field='displayName' headerText='displayName' />
+            <ColumnDirective field='username' headerText='username' />
+          </ColumnsDirective>
+        </GridComponent>
       </div>
     </div>
   );
