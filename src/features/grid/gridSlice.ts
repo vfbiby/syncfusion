@@ -27,7 +27,6 @@ const gridSlice = createSlice({
       state.isLoading = true;
     },
     fetchHostMissionsSuccess: (state, action: PayloadAction<Order[]>) => {
-      console.log(action.payload);
       state.orders = action.payload;
       state.isLoading = false;
     },
@@ -57,7 +56,7 @@ function asyncFetchOrders() {
   });
 }
 
-export function* fetchUsers(action: any) {
+export function* fetchUsers() {
   try {
     const users: User[] = yield call(asyncFetchUsers);
     // yield put(fetchHostMissionsSuccess(orders));
@@ -65,7 +64,7 @@ export function* fetchUsers(action: any) {
   }
 }
 
-export function* fetchOrders(action: any) {
+export function* fetchOrders() {
   try {
     const orders: Order[] = yield call(asyncFetchOrders);
     yield put(fetchHostMissionsSuccess(orders));

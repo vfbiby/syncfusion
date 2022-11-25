@@ -13,10 +13,10 @@ describe('ReduxGrid', function() {
   it('click button should show data', async function() {
     vi.useFakeTimers();
     render(<Provider store={createStore()}><ReduxGrid /></Provider>);
-    fireEvent.click(screen.getByRole('button'));
+    fireEvent.click(screen.getByText('fetch'));
     vi.runAllTimers();
     await waitFor(() => {
-      expect(screen.getByText('james')).toBeInTheDocument();
+      expect(screen.getByText('VINET')).toBeInTheDocument();
     });
   });
 });
