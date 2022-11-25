@@ -1,5 +1,7 @@
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { data } from '../../components/grid/DataSource';
+import { Order } from '../../app/Type';
 
 interface User {
   username: string;
@@ -7,22 +9,32 @@ interface User {
   password: string;
 }
 
-let initialState: { users: User[] } = {
-  users: [],
+type ReduxGridStates = {
+  orders: Order[]
+  isLoading: boolean;
+};
+
+let initialState: ReduxGridStates = {
+  'orders': [],
+  isLoading: false,
 };
 
 const gridSlice = createSlice({
   name: 'hostMissions',
   initialState,
   reducers: {
-    getHostMissions: (state, action: PayloadAction<User[]>) => {
+    fetchOrders: (state) => {
+      state.isLoading = true;
+    },
+    getHostMissions: (state, action: PayloadAction<Order[]>) => {
       console.log(action.payload);
-      state.users = action.payload;
+      state.orders = action.payload;
+      state.isLoading = false;
     },
   },
 });
 
-export const { getHostMissions } = gridSlice.actions;
+export const { getHostMissions, fetchOrders } = gridSlice.actions;
 export default gridSlice.reducer;
 
 function asyncFetchUsers() {
@@ -40,7 +52,7 @@ function asyncFetchUsers() {
 export function* fetchUsers(action: any) {
   try {
     const users: User[] = yield call(asyncFetchUsers);
-    yield put(getHostMissions(users));
+    yield put(getHostMissions(data as Order[]));
   } catch (e) {
   }
 }

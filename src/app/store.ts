@@ -5,7 +5,7 @@ import gridReducer, { rootSaga } from '../features/grid/gridSlice';
 
 const sagaMiddleware = createSagaMiddleware();
 export const createStore = () => {
-  const configureStore1 = configureStore({
+  const configuredStore = configureStore({
     reducer: {
       counter: counterReducer,
       hostMissions: gridReducer,
@@ -16,7 +16,7 @@ export const createStore = () => {
   });
   sagaMiddleware.run(rootSaga);
 
-  return configureStore1;
+  return configuredStore;
 };
 
 export const store = createStore();

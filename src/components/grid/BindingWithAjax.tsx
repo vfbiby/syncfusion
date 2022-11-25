@@ -2,19 +2,6 @@ import { ColumnDirective, ColumnsDirective, GridComponent } from '@syncfusion/ej
 import React from 'react';
 import { Ajax } from '@syncfusion/ej2-base';
 
-export type Order = {
-  OrderID: number;
-  CustomerID: string;
-  EmployeeID: number;
-  Freight: number;
-  ShipCity: string;
-  Verified: boolean;
-  OrderDate: Date;
-  ShipName: string;
-  ShipCountry: string;
-  ShippedDate: Date;
-  ShipAddress: string;
-};
 export const BindingWithAjax = () => {
   let gridRef: GridComponent | null;
   const ajax = new Ajax('https://ej2services.syncfusion.com/production/web-services/api/Orders', 'GET');
