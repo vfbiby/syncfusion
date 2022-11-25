@@ -17,11 +17,7 @@ export const ReduxGrid = () => {
       <button onClick={() => dispatch(fetchUsersAction())} className='p-2 rounded'>fetch
       </button>
       <div className='p-2'>
-        <GridComponent ref={(g) => {
-          if (g) {
-            gridRef.current = g;
-          } else console.log('gridInstance is null!');
-        }} dataSource={users}>
+        <GridComponent ref={gridRef} dataSource={users}>
           <ColumnsDirective>
             <ColumnDirective field='displayName' headerText='displayName' />
             <ColumnDirective field='username' headerText='username' />

@@ -44,7 +44,9 @@ export function Grid() {
           if (grid) {
             const selectedRow = grid.getSelectedRowIndexes()[0];
             if (grid.getSelectedRowIndexes().length)
-              grid.dataSource.splice(selectedRow, 1);
+              { // @ts-ignore
+                grid.dataSource.splice(selectedRow, 1);
+              }
             else
               alert('No records selected for delete operation');
             grid.refresh();
