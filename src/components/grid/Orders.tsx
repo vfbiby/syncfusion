@@ -1,18 +1,57 @@
 import { useAppDispatch, useAppSelector } from '../../app/hook';
 import { useEffect, useRef } from 'react';
-import { ColumnDirective, ColumnsDirective, GridComponent } from '@syncfusion/ej2-react-grids';
-import { fetchOrders } from '../../features/grid/gridSlice';
+import {
+  ColumnDirective,
+  ColumnsDirective,
+  Filter,
+  GridComponent,
+  Group,
+  Inject,
+  Page,
+  Sort,
+  Toolbar,
+} from '@syncfusion/ej2-react-grids';
+import { fetchOrders, sortByColumn } from '../../features/grid/orderSlice';
+import { DataStateChangeEventArgs } from '@syncfusion/ej2-grids';
+import { OrderService } from './CustomBinding';
 
 export const Orders = () => {
   const orders = useAppSelector(state => state.hostMissions.orders);
   const isLoading = useAppSelector(state => state.hostMissions.isLoading);
   const dispatch = useAppDispatch();
   const gridRef = useRef<GridComponent | null>(null);
+  const orderService: OrderService = new OrderService();
+  let data: any;
+
+  function renderComplete() {
+    if (gridRef.current && gridRef.current.dataSource instanceof Array && !(gridRef.current.dataSource as object[]).length) {
+      const state = { skip: 0, take: 10 };
+      dataStateChange(state);
+    }/*    if (gridRef.current && (gridRef.current.dataSource instanceof Array) && !(gridRef.current.dataSource as Object[]).length) {
+      const state = { skip: 0, take: 10 };
+      dataStateChange(state);
+    }*/
+  }
+
+  function dataStateChange(state: DataStateChangeEventArgs) {
+    console.log('dataStateChange', state);
+    if (state.action && state.action.requestType === 'sorting') {
+      dispatch(sortByColumn(state.sorted ? state.sorted[0] : {}));
+    }
+    if (gridRef.current)
+      gridRef.current.dataSource = orders;
+  }
+
+  useEffect(() => {
+    console.log('in dispatch');
+    dispatch(fetchOrders());
+  }, []);
 
   useEffect(() => {
     if (gridRef.current) gridRef.current.refresh();
     else console.log('no gridRef');
   }, [orders]);
+
   return (
     <div>
       <button onClick={() => {
@@ -21,7 +60,15 @@ export const Orders = () => {
       </button>
       <div className='p-2'>
         {isLoading && <span>isLoading....</span>}
-        <GridComponent ref={gridRef} dataSource={orders}>
+        <GridComponent
+          allowSorting allowFiltering={false}
+          allowPaging
+          allowGrouping
+          toolbar={['Add', 'Edit', 'Update', 'Delete', 'Search']}
+          dataBound={renderComplete}
+          dataStateChange={dataStateChange}
+          ref={gridRef}
+        >
           <ColumnsDirective>
             <ColumnDirective field='OrderID' textAlign='Left' headerText='Order ID' />
             <ColumnDirective field='CustomerID' textAlign='Left' headerText='Customer ID' />
@@ -36,8 +83,10 @@ export const Orders = () => {
             <ColumnDirective field='Freight' textAlign='Left' headerText='Freight' />
             <ColumnDirective field='Verified' textAlign='Left' headerText='Verified' />
           </ColumnsDirective>
+          <Inject services={[Page, Group, Sort, Toolbar, Filter]} />
         </GridComponent>
       </div>
     </div>
   );
 };
+

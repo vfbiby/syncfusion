@@ -2,6 +2,7 @@ import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { data } from '../../components/grid/DataSource';
 import { Order } from '../../app/Type';
+import { Sorts } from '@syncfusion/ej2-grids';
 
 interface User {
   username: string;
@@ -10,12 +11,15 @@ interface User {
 }
 
 type OrderStates = {
-  orders: Order[]
+  orders: { result: Order[], count: number }
   isLoading: boolean;
+  filters?: [];
+  sorting?: [];
+  paging?: [];
 };
 
 let initialState: OrderStates = {
-  'orders': [],
+  'orders': { result: [], count: 0 },
   isLoading: false,
 };
 
@@ -27,13 +31,26 @@ const orderSlice = createSlice({
       state.isLoading = true;
     },
     fetchOrdersSuccess: (state, action: PayloadAction<Order[]>) => {
-      state.orders = action.payload;
+      state.orders.result = action.payload;
+      state.orders.count = action.payload.length;
       state.isLoading = false;
+    },
+    sortByColumn: (state, action: PayloadAction<Sorts>) => {
+      const { name, direction } = action.payload as { name: keyof Order, direction: string };
+      if (name)
+        state.orders.result.sort((a, b) => {
+          if (typeof (a[name]) === 'string') { // @ts-ignore
+            return direction === 'ascending' ? a[name].localeCompare(b[name]) : b[name].localeCompare(a[name]);
+          }
+          if (typeof (a[name]) === 'number') { // @ts-ignore
+            return action.payload.direction === 'ascending' ? a[name] - b[name] : b[name] - a[name];
+          }
+        });
     },
   },
 });
 
-export const { fetchOrders, fetchOrdersSuccess } = orderSlice.actions;
+export const { fetchOrders, sortByColumn, fetchOrdersSuccess } = orderSlice.actions;
 export default orderSlice.reducer;
 
 function asyncFetchUsers() {
