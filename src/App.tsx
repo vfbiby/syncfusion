@@ -11,7 +11,7 @@ import { Crud } from './components/grid/Crud';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 import { Counter } from './components/Counter';
-import { ReduxGrid } from './components/grid/ReduxGrid';
+import { Orders } from './components/grid/Orders';
 
 registerLicense(
   'ORg4AjUWIQA/Gnt2VVhjQlFaclhJXGJWf1ppR2Naf052flBAal5WVAciSV9jS3xSdkdjWXlbeHBdQGZYVQ==',
@@ -23,7 +23,7 @@ function App() {
       <Routes>
         <Route path={'/'} element={<span>Hello World!</span>} />
         <Route path={'/counter'} element={<Counter />} />
-        <Route path={'/redux-grid'} element={<ReduxGrid />} />
+        <Route path={'/Orders'} element={<Orders />} />
         <Route path={'/grid'} element={<Grid />} />
         <Route path={'/grid/extra-params'} element={<SendExtraParams />} />
         <Route path={'/grid/handling-error'} element={<HandlingError />} />

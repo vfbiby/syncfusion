@@ -9,32 +9,32 @@ interface User {
   password: string;
 }
 
-type ReduxGridStates = {
+type OrderStates = {
   orders: Order[]
   isLoading: boolean;
 };
 
-let initialState: ReduxGridStates = {
+let initialState: OrderStates = {
   'orders': [],
   isLoading: false,
 };
 
-const gridSlice = createSlice({
+const orderSlice = createSlice({
   name: 'hostMissions',
   initialState,
   reducers: {
-    fetchHostMissions: (state) => {
+    fetchOrders: (state) => {
       state.isLoading = true;
     },
-    fetchHostMissionsSuccess: (state, action: PayloadAction<Order[]>) => {
+    fetchOrdersSuccess: (state, action: PayloadAction<Order[]>) => {
       state.orders = action.payload;
       state.isLoading = false;
     },
   },
 });
 
-export const { fetchHostMissions, fetchHostMissionsSuccess } = gridSlice.actions;
-export default gridSlice.reducer;
+export const { fetchOrders, fetchOrdersSuccess } = orderSlice.actions;
+export default orderSlice.reducer;
 
 function asyncFetchUsers() {
   return new Promise<User[]>((resolve) => {
@@ -64,10 +64,10 @@ export function* fetchUsers() {
   }
 }
 
-export function* fetchOrders() {
+export function* fetchOrdersSaga() {
   try {
     const orders: Order[] = yield call(asyncFetchOrders);
-    yield put(fetchHostMissionsSuccess(orders));
+    yield put(fetchOrdersSuccess(orders));
   } catch (e) {
   }
 }
@@ -76,6 +76,6 @@ export const fetchUsersAction = createAction('USER_FETCH');
 
 export function* rootSaga() {
   // yield takeLatest(fetchUsersAction, fetchUsers);
-  yield takeLatest(fetchHostMissions, fetchOrders);
+  yield takeLatest(fetchOrders, fetchOrdersSaga);
 }
 

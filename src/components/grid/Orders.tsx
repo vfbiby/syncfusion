@@ -1,9 +1,9 @@
 import { useAppDispatch, useAppSelector } from '../../app/hook';
 import { useEffect, useRef } from 'react';
-import { fetchHostMissions, fetchUsersAction } from '../../features/grid/gridSlice';
 import { ColumnDirective, ColumnsDirective, GridComponent } from '@syncfusion/ej2-react-grids';
+import { fetchOrders } from '../../features/grid/gridSlice';
 
-export const ReduxGrid = () => {
+export const Orders = () => {
   const orders = useAppSelector(state => state.hostMissions.orders);
   const isLoading = useAppSelector(state => state.hostMissions.isLoading);
   const dispatch = useAppDispatch();
@@ -16,7 +16,7 @@ export const ReduxGrid = () => {
   return (
     <div>
       <button onClick={() => {
-        return dispatch(fetchHostMissions());
+        return dispatch(fetchOrders());
       }} className='p-2 rounded'>fetch
       </button>
       <div className='p-2'>
