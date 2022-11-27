@@ -1,7 +1,6 @@
 import { DataManager, Query, ReturnOption } from '@syncfusion/ej2-data';
-import { useCallback, useEffect, useState } from 'react';
+import { ChangeEvent, ChangeEventHandler, useCallback, useEffect, useState } from 'react';
 import { data } from '../../grid/DataSource';
-import { getValue } from '@syncfusion/ej2-base';
 
 function Row(props: IOrder) {
   return (<tr key={props.OrderID}>
@@ -12,11 +11,12 @@ function Row(props: IOrder) {
 }
 
 type IOrder = { OrderID: number, CustomerID: string, EmployeeID: number };
-export const Insert = () => {
+export const Crud = () => {
   let dm: DataManager;
   let style: { [x: string]: string; } = { class: 'e-form' };
   const [state, setState] = useState<{ items: IOrder[] } | undefined>(undefined);
   dm = new DataManager(data.slice(0, 5));
+  const [action, setAction] = useState('Crud');
 
   function createRow(order: IOrder[]) {
     return order.map((row) => <Row key={row.OrderID} {...row} />);
@@ -28,7 +28,7 @@ export const Insert = () => {
     });
   }, []);
 
-  const wrappedInsert = useCallback(() => {
+  const wrappedAction = useCallback(() => {
       const orderId = document.getElementById('OrderID') as HTMLInputElement;
       const cusId = document.getElementById('CustomerID') as HTMLInputElement;
       const empId = document.getElementById('EmployeeID') as HTMLInputElement;
@@ -38,7 +38,12 @@ export const Insert = () => {
         OrderID: Number(orderId.value),
       };
       if (!rowData.OrderID) return;
-      dm.insert(rowData);
+      if (action === 'Remove')
+        dm.remove('OrderID', rowData);
+      else if (action === 'Update')
+        dm.update('OrderID', rowData);
+      else
+        dm.insert(rowData);
       dm.executeQuery(new Query()).then((e: ReturnOption) => {
         console.log(e.result);
         setState({
@@ -46,14 +51,24 @@ export const Insert = () => {
         });
       });
     }
-    , []);
+    , [action]);
+
+  function onSelectAction(e: ChangeEvent<HTMLSelectElement>) {
+    console.log(e.target.value);
+    setAction(e.target.value);
+  }
 
   return <div>
     <div style={style}>
+      <select onChange={onSelectAction} defaultValue={action}>
+        <option selected value='Crud'>Crud</option>
+        <option value='Update'>Update</option>
+        <option value='Remove'>Remove</option>
+      </select>
       <input type='number' id='OrderID' placeholder='Order ID' />
       <input type='text' id='CustomerID' placeholder='Customer ID' />
       <input type='number' id='EmployeeID' placeholder='Employee ID' />
-      <input className='px-2 py-1 rounded' type='button' value='Insert' id='manipulate' onClick={wrappedInsert} />
+      <input className='px-2 py-1 rounded' type='button' value='Action' id='manipulate' onClick={wrappedAction} />
     </div>
     <div>
       <table id='datatable' className='e-table'>
