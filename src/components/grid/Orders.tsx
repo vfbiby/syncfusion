@@ -12,7 +12,7 @@ import {
   Toolbar,
 } from '@syncfusion/ej2-react-grids';
 import { fetchOrders, sortByColumn } from '../../features/grid/orderSlice';
-import { DataStateChangeEventArgs } from '@syncfusion/ej2-grids';
+import { ColumnMenu, DataStateChangeEventArgs } from '@syncfusion/ej2-grids';
 import { OrderService } from './CustomBinding';
 
 export const Orders = () => {
@@ -61,9 +61,13 @@ export const Orders = () => {
       <div className='p-2'>
         {isLoading && <span>isLoading....</span>}
         <GridComponent
-          allowSorting allowFiltering={false}
+          allowSorting
+          allowFiltering
           allowPaging
           allowGrouping
+          showColumnMenu
+          filterSettings={{ type: 'CheckBox' }}
+          groupSettings={{ showGroupedColumn: true }}
           toolbar={['Add', 'Edit', 'Update', 'Delete', 'Search']}
           dataBound={renderComplete}
           dataStateChange={dataStateChange}
@@ -81,9 +85,8 @@ export const Orders = () => {
             <ColumnDirective field='ShipPostalCode' textAlign='Left' headerText='ShipPostal Code' />
             <ColumnDirective field='ShipCountry' textAlign='Left' headerText='Ship Country' />
             <ColumnDirective field='Freight' textAlign='Left' headerText='Freight' />
-            <ColumnDirective field='Verified' textAlign='Left' headerText='Verified' />
           </ColumnsDirective>
-          <Inject services={[Page, Group, Sort, Toolbar, Filter]} />
+          <Inject services={[Page, Group, ColumnMenu, Sort, Toolbar, Filter]} />
         </GridComponent>
       </div>
     </div>

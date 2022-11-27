@@ -16,7 +16,19 @@ import {
 } from '@syncfusion/ej2-react-grids';
 import { data } from './DataSource';
 import { EmitType } from '@syncfusion/ej2-base';
-import { FilterSettingsModel, Resize } from '@syncfusion/ej2-grids';
+import {
+  ColumnMenu,
+  ContextMenu,
+  ContextMenuItem,
+  FilterSettingsModel,
+  GroupSettingsModel,
+  Resize,
+} from '@syncfusion/ej2-grids';
+
+export const contextMenuItems: ContextMenuItem[] = ['AutoFit', 'AutoFitAll',
+  'SortAscending', 'SortDescending', 'Copy', 'Edit', 'Delete', 'Save',
+  'Cancel', 'PdfExport', 'ExcelExport', 'CsvExport', 'FirstPage', 'PrevPage',
+  'LastPage', 'NextPage'];
 
 export function Grid() {
   let grid: GridComponent | null;
@@ -25,14 +37,14 @@ export function Grid() {
     columns: [{ field: 'EmployeeID', direction: 'Descending' }],
   };
   const filterSettings: FilterSettingsModel = {
-    type: 'Menu',
+    type: 'CheckBox',
     // columns: [
     //   { field: 'EmployeeID', operator: 'greaterthan', value: 2 },
     //   { field: 'CustomerID', operator: 'contains', value: 'H' },
     // ],
   };
 
-  const groupSettings = { columns: ['EmployeeID'] };
+  const groupSettings: GroupSettingsModel = { showGroupedColumn: true, columns: ['EmployeeID'] };
   const hello = (type: EmitType<FilterEventArgs>) => {
     console.log();
   };
@@ -43,11 +55,9 @@ export function Grid() {
         <button onClick={() => {
           if (grid) {
             const selectedRow = grid.getSelectedRowIndexes()[0];
-            if (grid.getSelectedRowIndexes().length)
-              { // @ts-ignore
-                grid.dataSource.splice(selectedRow, 1);
-              }
-            else
+            if (grid.getSelectedRowIndexes().length) { // @ts-ignore
+              grid.dataSource.splice(selectedRow, 1);
+            } else
               alert('No records selected for delete operation');
             grid.refresh();
           }
@@ -101,16 +111,16 @@ export function Grid() {
       </div>
       <GridComponent
         ref={(g) => (grid = g)}
-        allowResizing
-        actionBegin={hello}
+        // allowResizing
+        // actionBegin={hello}
         allowPaging={true}
         pageSettings={pageSettings}
         allowSorting={true}
         sortSettings={sortSettings}
         allowFiltering={true}
-        filterSettings={filterSettings}
-        allowGrouping={false}
-        groupSettings={groupSettings}
+        // filterSettings={filterSettings}
+        allowGrouping={true}
+        // groupSettings={groupSettings}
         searchSettings={{
           // fields: ['CustomerID'],
           // ignoreCase: true,
@@ -118,7 +128,9 @@ export function Grid() {
           // operator: 'contains',
         }}
         toolbar={['Search']}
+        showColumnMenu={true}
         dataSource={data}
+        contextMenuItems={contextMenuItems}
       >
         <ColumnsDirective>
           <ColumnDirective field='OrderID' width='100' textAlign='Right' />
@@ -132,7 +144,7 @@ export function Grid() {
           />
           <ColumnDirective field='ShipCountry' width='100' />
         </ColumnsDirective>
-        <Inject services={[Page, Sort, Filter, Resize, Search, Toolbar, Group]} />
+        <Inject services={[ColumnMenu, ContextMenu, Filter, Sort, Group]} />
       </GridComponent>
     </div>
   );
