@@ -1,10 +1,10 @@
 import {
-  ColumnDirective,
+  ColumnDirective, ColumnMenu,
   ColumnsDirective, ContextMenu, ContextMenuItem, Edit,
-  EditSettingsModel,
+  EditSettingsModel, Filter,
   GridComponent,
-  Inject,
-  SelectionSettingsModel,
+  Inject, Page, Resize,
+  SelectionSettingsModel, Sort,
   Toolbar, ToolbarItems,
 } from '@syncfusion/ej2-react-grids';
 import { data } from '../../datasource';
@@ -35,8 +35,12 @@ export const Clipboard = () => {
     <GridComponent
       ref={gridRef}
       showColumnMenu
+      allowSorting
+      allowFiltering
+      allowPaging
       editSettings={editOptions}
       toolbar={toolbarOptions}
+      filterSettings={{ type: 'CheckBox' }}
       contextMenuItems={contextMenuItems}
       dataSource={data}
       selectionSettings={selectionOptions}
@@ -44,12 +48,13 @@ export const Clipboard = () => {
       height={272}
     >
       <ColumnsDirective>
-        <ColumnDirective isPrimaryKey visible={false} field='OrderID' headerText='Order ID' width='120' textAlign='Right' />
+        <ColumnDirective isPrimaryKey visible={false} field='OrderID' headerText='Order ID' width='120'
+                         textAlign='Right' />
         <ColumnDirective field='CustomerID' headerText='Customer ID' width='150' />
         <ColumnDirective field='ShipCity' headerText='Ship City' width='150' />
         <ColumnDirective field='ShipName' headerText='Ship Name' width='150' />
       </ColumnsDirective>
-      <Inject services={[ContextMenu, Edit, Toolbar]} />
+      <Inject services={[ContextMenu, ColumnMenu, Resize, Page, Filter, Sort, Edit, Toolbar]} />
     </GridComponent>
   </div>;
 };
