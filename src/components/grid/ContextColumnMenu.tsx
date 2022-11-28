@@ -13,16 +13,22 @@ import {
   Inject,
   Page,
   PdfExport, Reorder,
-  Resize,
+  Resize, RowDataBoundEventArgs,
   Sort, Toolbar, ToolbarItems,
 } from '@syncfusion/ej2-react-grids';
 import { data } from '../../datasource';
 import { contextMenuItems } from './Clipboard';
+import { Order } from '../../app/Type';
 
 export const ContextColumnMenu = () => {
   const groupOptions: GroupSettingsModel = { showGroupedColumn: true, showDropArea: false };
   const filterSettings: FilterSettingsModel = { type: 'CheckBox' };
   const toolbarOptions: ToolbarItems[] = ['ColumnChooser'];
+
+  const rowDataBound = (args: RowDataBoundEventArgs) => {
+    if ((args.data as Order).OrderID <= 10249)
+      args.rowHeight = 50;
+  };
 
   return <div>
     <GridComponent
@@ -36,6 +42,7 @@ export const ContextColumnMenu = () => {
       allowResizing
       showColumnChooser
       allowReordering
+      rowDataBound={rowDataBound}
       toolbar={toolbarOptions}
       contextMenuItems={contextMenuItems}
       groupSettings={groupOptions}

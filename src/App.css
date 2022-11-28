@@ -54,3 +54,11 @@
 .read-the-docs {
     color: #888;
 }
+
+.e-grid td.e-active {
+    background-color: #f9920b;
+}
+
+.e-grid .e-altrow {
+    background-color: #fafafa;
+}
