@@ -46,22 +46,22 @@ export const Batch = () => {
       EmployeeID: Number(employeeID),
       OrderID: Number(orderID),
     };
-    console.log('rowData', rowData);
+    // console.log('rowData', rowData);
     setCustomerID('');
     setOrderID('');
     setEmployeeID('');
     if (action === 'Remove') {
       setChanges(prevState => {
-        console.log('In Remove prevState', prevState);
+        // console.log('In Remove prevState', prevState);
         const { deletedRecords } = prevState;
         deletedRecords.push(rowData);
         return Object.assign({}, prevState, {
           deletedRecords: deletedRecords,
         });
       });
-      console.log('In Remove', changes);
+      // console.log('In Remove', changes);
     } else if (action === 'Update') {
-      console.log('In Update before', changes);
+      // console.log('In Update before', changes);
       setChanges(prevState => {
         const { changedRecords } = prevState;
         changedRecords.push(rowData);
@@ -69,14 +69,14 @@ export const Batch = () => {
           changedRecords: changedRecords,
         });
       });
-      console.log('In Update', changes);
+      // console.log('In Update', changes);
     } else {
       const { addedRecords } = changes;
       addedRecords.push(rowData);
       setChanges(prevState => {
         return Object.assign({}, prevState, { addedRecords: addedRecords });
       });
-      console.log('In Add', changes);
+      // console.log('In Add', changes);
     }
   };
 
@@ -86,22 +86,19 @@ export const Batch = () => {
 
   function onSaveChanges() {
     dm.saveChanges(changes, 'OrderID');
-    setChanges(prevState => {
-      const newChanges = {
-        addedRecords: [],
-        deletedRecords: [],
-        changedRecords: [],
-      };
-      return Object.assign({}, newChanges);
+    setChanges({
+      addedRecords: [],
+      deletedRecords: [],
+      changedRecords: [],
     });
     dm.executeQuery(new Query()).then((e: ReturnOption) => {
-      console.log('In ExecuteQuery', changes);
-      console.log('eeeee', e);
+      // console.log('In ExecuteQuery', changes);
+      // console.log('eeeee', e);
       setState({
         items: (e.result as IOrder[]),
       });
     });
-    console.log('In Save changes', changes);
+    // console.log('In Save changes', changes);
   }
 
   return <div>

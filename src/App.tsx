@@ -15,6 +15,7 @@ import { Orders } from './components/grid/Orders';
 import { Manager } from './components/data/Manager/Manager';
 import { Crud as DmCrud } from './components/data/Manager/Crud';
 import { Batch } from './components/data/Manager/Batch';
+import { Clipboard } from './components/grid/Clipboard';
 
 registerLicense(
   'ORg4AjUWIQA/Gnt2VVhjQlFaclhJXGJWf1ppR2Naf052flBAal5WVAciSV9jS3xSdkdjWXlbeHBdQGZYVQ==',
@@ -33,6 +34,7 @@ function App() {
         <Route path={'/grid/binding-with-ajax'} element={<BindingWithAjax />} />
         <Route path={'/grid/custom-binding'} element={<CustomBinding />} />
         <Route path={'/grid/crud'} element={<Crud />} />
+        <Route path={'/grid/clipboard'} element={<Clipboard />} />
         <Route path={'/data/manager'} element={<Manager />} />
         <Route path={'/data/manager/crud'} element={<DmCrud />} />
         <Route path={'/data/manager/batch'} element={<Batch />} />
