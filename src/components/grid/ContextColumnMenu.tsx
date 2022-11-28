@@ -12,7 +12,7 @@ import {
   GroupSettingsModel,
   Inject,
   Page,
-  PdfExport,
+  PdfExport, Reorder,
   Resize,
   Sort, Toolbar, ToolbarItems,
 } from '@syncfusion/ej2-react-grids';
@@ -35,6 +35,7 @@ export const ContextColumnMenu = () => {
       allowFiltering
       allowResizing
       showColumnChooser
+      allowReordering
       toolbar={toolbarOptions}
       contextMenuItems={contextMenuItems}
       groupSettings={groupOptions}
@@ -47,7 +48,7 @@ export const ContextColumnMenu = () => {
         <ColumnDirective field='ShipName' headerText='Ship Name' width='200' />
       </ColumnsDirective>
       <Inject
-        services={[Sort, ColumnMenu, ColumnChooser, Toolbar, Resize, ContextMenu, Filter, Page, Group, ExcelExport, Edit, PdfExport]} />
+        services={[Sort, ColumnMenu, Reorder, ColumnChooser, Toolbar, Resize, ContextMenu, Filter, Page, Group, ExcelExport, Edit, PdfExport]} />
     </GridComponent>
   </div>;
 };

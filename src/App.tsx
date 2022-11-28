@@ -36,7 +36,7 @@ function App() {
         <Route path={'/grid/custom-binding'} element={<CustomBinding />} />
         <Route path={'/grid/crud'} element={<Crud />} />
         <Route path={'/grid/clipboard'} element={<Clipboard />} />
-        <Route path={'/grid/column-menu'} element={<ContextColumnMenu />} />
+        <Route path={'/grid/context-menu'} element={<ContextColumnMenu />} />
         <Route path={'/data/manager'} element={<Manager />} />
         <Route path={'/data/manager/crud'} element={<DmCrud />} />
         <Route path={'/data/manager/batch'} element={<Batch />} />
