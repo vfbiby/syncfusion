@@ -52,7 +52,7 @@ export const ContextColumnMenu = () => {
         <ColumnDirective field='OrderID' headerText='Order ID' textAlign='Right' />
         <ColumnDirective field='CustomerID' headerText='Customer Name' />
         <ColumnDirective field='Freight' headerText='Freight' format='C2' textAlign='Right' />
-        <ColumnDirective field='ShipName' headerText='Ship Name' width='200' />
+        <ColumnDirective field='ShipName' clipMode='EllipsisWithTooltip' headerText='Ship Name' width='200' />
       </ColumnsDirective>
       <Inject
         services={[Sort, ColumnMenu, Reorder, ColumnChooser, Toolbar, Resize, ContextMenu, Filter, Page, Group, ExcelExport, Edit, PdfExport]} />
