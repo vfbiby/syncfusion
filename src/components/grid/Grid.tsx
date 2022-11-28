@@ -1,11 +1,11 @@
 import {
   Column,
-  ColumnDirective,
-  ColumnsDirective,
+  ColumnDirective, ColumnMenu,
+  ColumnsDirective, ContextMenu, ContextMenuItem,
   Filter,
-  FilterEventArgs,
+  FilterEventArgs, FilterSettingsModel,
   GridComponent,
-  Group,
+  Group, GroupSettingsModel,
   Inject,
   Page,
   PageSettingsModel,
@@ -16,14 +16,6 @@ import {
 } from '@syncfusion/ej2-react-grids';
 import { data } from './DataSource';
 import { EmitType } from '@syncfusion/ej2-base';
-import {
-  ColumnMenu,
-  ContextMenu,
-  ContextMenuItem,
-  FilterSettingsModel,
-  GroupSettingsModel,
-  Resize,
-} from '@syncfusion/ej2-grids';
 
 export const contextMenuItems: ContextMenuItem[] = ['AutoFit', 'AutoFitAll',
   'SortAscending', 'SortDescending', 'Copy', 'Edit', 'Delete', 'Save',

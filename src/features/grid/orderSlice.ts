@@ -2,7 +2,7 @@ import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { data } from '../../components/grid/DataSource';
 import { Order } from '../../app/Type';
-import { Sorts } from '@syncfusion/ej2-grids';
+import { Sorts } from '@syncfusion/ej2-react-grids';
 
 interface User {
   username: string;

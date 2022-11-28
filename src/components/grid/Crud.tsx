@@ -1,6 +1,6 @@
 import {
   ColumnDirective,
-  ColumnsDirective,
+  ColumnsDirective, DataResult, DataSourceChangedEventArgs, DataStateChangeEventArgs, Edit, FilterSettingsModel,
   GridComponent,
   Group,
   Inject,
@@ -11,13 +11,6 @@ import {
 } from '@syncfusion/ej2-react-grids';
 import React from 'react';
 import { Ajax } from '@syncfusion/ej2-base';
-import {
-  DataResult,
-  DataSourceChangedEventArgs,
-  DataStateChangeEventArgs,
-  Edit,
-  FilterSettingsModel,
-} from '@syncfusion/ej2-grids';
 
 export const Crud = () => {
   let gridRef: GridComponent | null;

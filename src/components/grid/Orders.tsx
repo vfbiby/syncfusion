@@ -1,8 +1,8 @@
 import { useAppDispatch, useAppSelector } from '../../app/hook';
 import { useEffect, useRef } from 'react';
 import {
-  ColumnDirective,
-  ColumnsDirective,
+  ColumnDirective, ColumnMenu,
+  ColumnsDirective, DataStateChangeEventArgs,
   Filter,
   GridComponent,
   Group,
@@ -12,7 +12,6 @@ import {
   Toolbar,
 } from '@syncfusion/ej2-react-grids';
 import { fetchOrders, sortByColumn } from '../../features/grid/orderSlice';
-import { ColumnMenu, DataStateChangeEventArgs } from '@syncfusion/ej2-grids';
 import { OrderService } from './CustomBinding';
 
 export const Orders = () => {

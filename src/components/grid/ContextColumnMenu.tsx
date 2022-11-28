@@ -1,18 +1,28 @@
 import {
+  ColumnChooser,
   ColumnDirective,
+  ColumnMenu,
   ColumnsDirective,
+  ContextMenu,
+  Edit,
+  ExcelExport,
   Filter,
+  FilterSettingsModel,
   GridComponent, Group,
+  GroupSettingsModel,
   Inject,
   Page,
-  Sort,
+  PdfExport,
+  Resize,
+  Sort, Toolbar, ToolbarItems,
 } from '@syncfusion/ej2-react-grids';
-import { ColumnMenu, Edit, ExcelExport, FilterSettingsModel, PdfExport } from '@syncfusion/ej2-grids';
 import { data } from '../../datasource';
+import { contextMenuItems } from './Clipboard';
 
-export const ColumnMenuExample = () => {
-  const groupOptions = { showGroupedColumn: true };
+export const ContextColumnMenu = () => {
+  const groupOptions: GroupSettingsModel = { showGroupedColumn: true, showDropArea: false };
   const filterSettings: FilterSettingsModel = { type: 'CheckBox' };
+  const toolbarOptions: ToolbarItems[] = ['ColumnChooser'];
 
   return <div>
     <GridComponent
@@ -23,6 +33,10 @@ export const ColumnMenuExample = () => {
       allowExcelExport
       allowPdfExport
       allowFiltering
+      allowResizing
+      showColumnChooser
+      toolbar={toolbarOptions}
+      contextMenuItems={contextMenuItems}
       groupSettings={groupOptions}
       filterSettings={filterSettings}
       dataSource={data}>
@@ -32,7 +46,8 @@ export const ColumnMenuExample = () => {
         <ColumnDirective field='Freight' headerText='Freight' format='C2' textAlign='Right' />
         <ColumnDirective field='ShipName' headerText='Ship Name' width='200' />
       </ColumnsDirective>
-      <Inject services={[Sort, ColumnMenu, Filter, Page, Group, ExcelExport, Edit, PdfExport]} />
+      <Inject
+        services={[Sort, ColumnMenu, ColumnChooser, Toolbar, Resize, ContextMenu, Filter, Page, Group, ExcelExport, Edit, PdfExport]} />
     </GridComponent>
   </div>;
 };

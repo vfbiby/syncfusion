@@ -1,13 +1,12 @@
 import {
   ColumnDirective,
-  ColumnsDirective,
+  ColumnsDirective, DataResult, DataStateChangeEventArgs,
   GridComponent, Group,
   Inject, Page,
   PageSettingsModel, Sort,
 } from '@syncfusion/ej2-react-grids';
 import React from 'react';
 import { Ajax, getValue } from '@syncfusion/ej2-base';
-import { DataResult, DataStateChangeEventArgs } from '@syncfusion/ej2-grids';
 
 export const CustomBinding = () => {
   let gridRef: GridComponent | null;

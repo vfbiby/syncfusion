@@ -1,7 +1,6 @@
-import { ColumnDirective, ColumnsDirective, GridComponent } from '@syncfusion/ej2-react-grids';
+import { ColumnDirective, ColumnsDirective, FailureEventArgs, GridComponent } from '@syncfusion/ej2-react-grids';
 import React from 'react';
 import { DataManager } from '@syncfusion/ej2-data';
-import { FailureEventArgs } from '@syncfusion/ej2-grids';
 
 const onActionFailure = (e: FailureEventArgs, gridRef: GridComponent | null) => {
   const span = document.createElement('span');

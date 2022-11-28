@@ -1,8 +1,7 @@
 import { data } from '../../grid/DataSource';
 import { DataManager, JsonAdaptor, Predicate, Query } from '@syncfusion/ej2-data';
 import { Order } from '../../../app/Type';
-import { GridComponent, Inject, Page, Sort } from '@syncfusion/ej2-react-grids';
-import { ColumnMenu, ContextMenu } from '@syncfusion/ej2-grids';
+import { ColumnMenu, ContextMenu, GridComponent, Inject, Page, Sort } from '@syncfusion/ej2-react-grids';
 import { contextMenuItems } from '../../grid/Grid';
 
 const Row = (item: Order) => {

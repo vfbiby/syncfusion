@@ -1,13 +1,14 @@
-import { ColumnDirective, ColumnsDirective, GridComponent, Inject, Toolbar } from '@syncfusion/ej2-react-grids';
+import {
+  ColumnDirective,
+  ColumnsDirective, ContextMenu, ContextMenuItem, Edit,
+  EditSettingsModel,
+  GridComponent,
+  Inject,
+  SelectionSettingsModel,
+  Toolbar, ToolbarItems,
+} from '@syncfusion/ej2-react-grids';
 import { data } from '../../datasource';
 import { useRef, useState } from 'react';
-import {
-  ContextMenu,
-  ContextMenuItem, Edit,
-  EditSettingsModel,
-  SelectionSettingsModel,
-  ToolbarItems,
-} from '@syncfusion/ej2-grids';
 
 export const contextMenuItems: ContextMenuItem[] = ['AutoFit', 'AutoFitAll',
   'SortAscending', 'SortDescending', 'Copy', 'Edit', 'Delete', 'Save',
