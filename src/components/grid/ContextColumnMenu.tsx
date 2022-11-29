@@ -31,6 +31,7 @@ export const ContextColumnMenu = () => {
   };
 
   return <div>
+    <button className='p-2 rounded m-2'>Is Tailwindcss work?</button>
     <GridComponent
       allowPaging
       allowGrouping
