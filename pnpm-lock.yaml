@@ -25,6 +25,7 @@ specifiers:
   '@vitest/ui': ^0.25.2
   '@welldone-software/why-did-you-render': ^7.0.1
   autoprefixer: ^10.4.12
+  flush-promises: ^1.0.2
   happy-dom: ^7.7.0
   jsdom: ^20.0.2
   postcss: ^8.4.18
@@ -37,6 +38,7 @@ specifiers:
   tailwindcss: ^3.2.0
   tailwindcss-base: ^1.0.5
   typescript: ^4.6.4
+  usehooks-ts: ^2.9.1
   vite: ^3.1.0
   vitest: ^0.25.2
 
@@ -61,6 +63,7 @@ dependencies:
   react-router-dom: 6.4.2_biqbaboplfbrettd7655fr4n2y
   redux-saga: 1.2.1
   tailwindcss-base: 1.0.5
+  usehooks-ts: 2.9.1_biqbaboplfbrettd7655fr4n2y
 
 devDependencies:
   '@testing-library/jest-dom': 5.16.5
@@ -73,6 +76,7 @@ devDependencies:
   '@vitest/ui': 0.25.2
   '@welldone-software/why-did-you-render': 7.0.1_react@18.2.0
   autoprefixer: 10.4.13_postcss@8.4.18
+  flush-promises: 1.0.2
   happy-dom: 7.7.0
   jsdom: 20.0.2
   postcss: 8.4.18
@@ -1679,6 +1683,10 @@ packages:
       to-regex-range: 5.0.1
     dev: true
 
+  /flush-promises/1.0.2:
+    resolution: {integrity: sha512-G0sYfLQERwKz4+4iOZYQEZVpOt9zQrlItIxQAAYAWpfby3gbHrx0osCHz5RLl/XoXevXk0xoN4hDFky/VV9TrA==}
+    dev: true
+
   /for-each/0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
     dependencies:
@@ -3029,6 +3037,17 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       react: registry.npmmirror.com/react/18.2.0
+    dev: false
+
+  /usehooks-ts/2.9.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-2FAuSIGHlY+apM9FVlj8/oNhd+1y+Uwv5QNkMQz1oSfdHk4PXo1qoCw9I5M7j0vpH8CSWFJwXbVPeYDjLCx9PA==}
+    engines: {node: '>=16.15.0', npm: '>=8'}
+    peerDependencies:
+      react: ^16.8.0  || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0  || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: registry.npmmirror.com/react/18.2.0
+      react-dom: registry.npmmirror.com/react-dom/18.2.0_react@18.2.0
     dev: false
 
   /util-deprecate/1.0.2:
