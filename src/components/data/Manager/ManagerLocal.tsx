@@ -10,7 +10,7 @@ import {
   FilterSettingsModel,
   GridComponent, Group, GroupSettingsModel,
   Inject,
-  Page,
+  Page, Resize,
   Sort,
   SortSettingsModel,
   Toolbar,
@@ -82,7 +82,7 @@ export const ManagerLocal = () => {
       <button onClick={setRow} className='p-2 m-2 rounded'>Set Row</button>
     </div>
     <GridComponent
-      allowSorting allowPaging allowFiltering showColumnMenu allowGrouping
+      allowSorting allowPaging allowFiltering allowGrouping
       // @ts-ignore
       filterSettings={filterSettings} ref={gridRef} groupSettings={groupOptions} contextMenuItems={contextMenuItems}
       toolbar={toolbarOptions} editSettings={editOptions} sortSettings={sortSettings} dataSource={dm}>
@@ -91,9 +91,9 @@ export const ManagerLocal = () => {
         <ColumnDirective field='CustomerID' allowFiltering={false} />
         <ColumnDirective field='EmployeeID' editType='numericedit' />
         <ColumnDirective field='ShipRegion' />
-        <ColumnDirective headerText='City' template={getCustomTemplate} />
+        <ColumnDirective headerText='City' field='ShipCity' textAlign='Left' allowFiltering={false} template={getCustomTemplate} />
       </ColumnsDirective>
-      <Inject services={[Sort, Toolbar, ColumnMenu, ContextMenu, Group, Filter, Edit, Page]} />
+      <Inject services={[Sort, Toolbar, Resize, ColumnMenu, ContextMenu, Group, Filter, Edit, Page]} />
     </GridComponent>
   </div>;
 };
