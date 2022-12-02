@@ -18,6 +18,7 @@ import { Batch } from './components/data/Manager/Batch';
 import { Clipboard } from './components/grid/Clipboard';
 import { ContextColumnMenu } from './components/grid/ContextColumnMenu';
 import { CopyToClipboard } from './components/data/CopyToClipboard';
+import { UpdateRow } from './components/grid/UpdateRow';
 
 registerLicense(
   'ORg4AjUWIQA/Gnt2VVhjQlFaclhJXGJWf1ppR2Naf052flBAal5WVAciSV9jS3xSdkdjWXlbeHBdQGZYVQ==',
@@ -38,6 +39,7 @@ function App() {
         <Route path={'/grid/crud'} element={<Crud />} />
         <Route path={'/grid/clipboard'} element={<Clipboard />} />
         <Route path={'/grid/context-menu'} element={<ContextColumnMenu />} />
+        <Route path={'/grid/update-row'} element={<UpdateRow />} />
         <Route path={'/data/manager'} element={<Manager />} />
         <Route path={'/data/manager/crud'} element={<DmCrud />} />
         <Route path={'/data/manager/batch'} element={<Batch />} />
