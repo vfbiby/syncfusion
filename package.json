@@ -43,6 +43,7 @@
     "@vitejs/plugin-react": "^2.1.0",
     "@vitest/coverage-istanbul": "^0.25.2",
     "@vitest/ui": "^0.25.2",
+    "@welldone-software/why-did-you-render": "^7.0.1",
     "autoprefixer": "^10.4.12",
     "flush-promises": "^1.0.2",
     "happy-dom": "^7.7.0",

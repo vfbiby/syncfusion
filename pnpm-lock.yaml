@@ -23,6 +23,7 @@ specifiers:
   '@vitejs/plugin-react': ^2.1.0
   '@vitest/coverage-istanbul': ^0.25.2
   '@vitest/ui': ^0.25.2
+  '@welldone-software/why-did-you-render': ^7.0.1
   autoprefixer: ^10.4.12
   flush-promises: ^1.0.2
   happy-dom: ^7.7.0
@@ -73,6 +74,7 @@ devDependencies:
   '@vitejs/plugin-react': registry.npmmirror.com/@vitejs/plugin-react/2.1.0_vite@3.1.8
   '@vitest/coverage-istanbul': 0.25.2_jwxzrr3lesfepfqimjedwdf34u
   '@vitest/ui': 0.25.2
+  '@welldone-software/why-did-you-render': 7.0.1_react@18.2.0
   autoprefixer: 10.4.13_postcss@8.4.18
   flush-promises: 1.0.2
   happy-dom: 7.7.0
@@ -925,6 +927,15 @@ packages:
     resolution: {integrity: sha512-/pUR88zjiF/5qnzb8Ou9i3+NDgteMcqk7G8VZox/qzcs7Z06dLpNzAxANOANP9m8U/yrJtPNjQqeuMI26HbWwA==}
     dependencies:
       sirv: 2.0.2
+    dev: true
+
+  /@welldone-software/why-did-you-render/7.0.1_react@18.2.0:
+    resolution: {integrity: sha512-Qe/8Xxa2G+LMdI6VoazescPzjjkHYduCDa8aHOJR50e9Bgs8ihkfMBY+ev7B4oc3N59Zm547Sgjf8h5y0FOyoA==}
+    peerDependencies:
+      react: ^16 || ^17 || ^18
+    dependencies:
+      lodash: 4.17.21
+      react: registry.npmmirror.com/react/18.2.0
     dev: true
 
   /abab/2.0.6:

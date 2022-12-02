@@ -1,6 +1,8 @@
 import { DataManager, Query, ReturnOption } from '@syncfusion/ej2-data';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { data } from '../../grid/DataSource';
+import { ColumnDirective, ColumnsDirective, GridComponent } from '@syncfusion/ej2-react-grids';
+import { Order } from '../../../app/Type';
 
 function Row(props: IOrder) {
   return (<tr key={props.OrderID}>
@@ -13,6 +15,7 @@ function Row(props: IOrder) {
 type IOrder = { OrderID: number, CustomerID: string, EmployeeID: number };
 type ChangedRecordsProps = { changedRecords: any [], addedRecords: any [], deletedRecords: any [] };
 export const Batch = () => {
+  const gridRef = useRef<GridComponent | null>(null);
   let dm: DataManager;
   let style: { [x: string]: string; } = { class: 'e-form' };
   const [state, setState] = useState<{ items: IOrder[] } | undefined>(undefined);
@@ -30,9 +33,7 @@ export const Batch = () => {
   const [customerID, setCustomerID] = useState('');
   const [employeeID, setEmployeeID] = useState('');
 
-  function createRow(order: IOrder[]) {
-    return order.map((row) => <Row key={row.OrderID} {...row} />);
-  }
+  const createRow = useCallback((order: IOrder[]) => order.map((row) => <Row key={row.OrderID} {...row} />), []);
 
   useEffect(() => {
     dm.executeQuery(new Query()).then((e: ReturnOption) => {
@@ -101,6 +102,23 @@ export const Batch = () => {
     // console.log('In Save changes', changes);
   }
 
+  function gridSet() {
+    gridRef.current?.setCellValue(10248, 'ShipRegion', 'SD');
+    gridRef.current?.setCellValue(10248, 'CustomerID', 'SD');
+  }
+
+  function gridUpdate() {
+    // updateCell, updateRow is not working
+    gridRef.current?.updateCell(1, 'ShipRegion', 'SD');
+    gridRef.current?.updateRow(3, { 'ShipRegion': 'SD' });
+
+    gridRef.current?.updateRowValue(10249, { 'OrderID': 10249, 'CustomerID': '2223', 'ShipRegion': 'DD' });
+  }
+
+  const getShipRegionTemplate = (row: Order) => {
+    return <span className='p-2 rounded bg-pink-100'>{row.ShipRegion}</span>;
+  };
+
   return <div>
     <div style={style}>
       <select onChange={onSelectAction} defaultValue={action}>
@@ -128,6 +146,18 @@ export const Batch = () => {
         </thead>
         <tbody>{state?.items ? createRow(state.items) : null}</tbody>
       </table>
+    </div>
+    <hr className='my-5' />
+    <button className='px-2 py-1 rounded ml-3' onClick={gridSet}>Direct set</button>
+    <button className='px-2 py-1 rounded ml-3' onClick={gridUpdate}>Direct Update</button>
+    <div className='py-2'>
+      <GridComponent ref={gridRef} dataSource={dataSource}>
+        <ColumnsDirective>
+          <ColumnDirective field='OrderID' isPrimaryKey />
+          <ColumnDirective field='CustomerID' />
+          <ColumnDirective field='ShipRegion' template={getShipRegionTemplate} />
+        </ColumnsDirective>
+      </GridComponent>
     </div>
   </div>;
 };
