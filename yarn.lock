@@ -501,7 +501,7 @@
   resolved "https://mirrors.cloud.tencent.com/npm/@syncfusion%2fej2-file-utils/-/ej2-file-utils-20.3.56.tgz#8afb610487ad4d122feaefa0cc3424061fa0e343"
   integrity sha512-nyRfXfsdyP7XqWLGcqUSZI8oKZts4iYXZm8qLzyTN0jrJOcPqX3xVtVAFOpnaXo5IuT8/VOPyr7bt/CI0Yf2lg==
 
-"@syncfusion/ej2-grids@20.3.58", "@syncfusion/ej2-grids@^20.3.57", "@syncfusion/ej2-grids@~20.3.57":
+"@syncfusion/ej2-grids@20.3.58", "@syncfusion/ej2-grids@~20.3.57":
   version "20.3.58"
   resolved "https://mirrors.cloud.tencent.com/npm/@syncfusion%2fej2-grids/-/ej2-grids-20.3.58.tgz#caa51600c996a0da49dea3bee85fab3173398581"
   integrity sha512-VWrwxrnY/8MNHUd1DX27o5lQ9MYk/YtLsaH91xNkJgAD4d9HKtudvl+uYrrp2TzWZLix6XUOJPnIBhDwEX/eCw==
@@ -864,7 +864,7 @@
 
 "@welldone-software/why-did-you-render@^7.0.1":
   version "7.0.1"
-  resolved "https://mirrors.cloud.tencent.com/npm/@welldone-software%2fwhy-did-you-render/-/why-did-you-render-7.0.1.tgz#09f487d84844bd8e66435843c2e0305702e61efb"
+  resolved "https://registry.yarnpkg.com/@welldone-software/why-did-you-render/-/why-did-you-render-7.0.1.tgz#09f487d84844bd8e66435843c2e0305702e61efb"
   integrity sha512-Qe/8Xxa2G+LMdI6VoazescPzjjkHYduCDa8aHOJR50e9Bgs8ihkfMBY+ev7B4oc3N59Zm547Sgjf8h5y0FOyoA==
   dependencies:
     lodash "^4"
@@ -1550,6 +1550,11 @@ fill-range@^7.0.1:
   integrity sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==
   dependencies:
     to-regex-range "^5.0.1"
+
+flush-promises@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/flush-promises/-/flush-promises-1.0.2.tgz#4948fd58f15281fed79cbafc86293d5bb09b2ced"
+  integrity sha512-G0sYfLQERwKz4+4iOZYQEZVpOt9zQrlItIxQAAYAWpfby3gbHrx0osCHz5RLl/XoXevXk0xoN4hDFky/VV9TrA==
 
 for-each@^0.3.3:
   version "0.3.3"
@@ -2937,6 +2942,11 @@ use-sync-external-store@^1.0.0:
   version "1.2.0"
   resolved "https://mirrors.cloud.tencent.com/npm/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz#7dbefd6ef3fe4e767a0cf5d7287aacfb5846928a"
   integrity sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==
+
+usehooks-ts@^2.9.1:
+  version "2.9.1"
+  resolved "https://registry.yarnpkg.com/usehooks-ts/-/usehooks-ts-2.9.1.tgz#953d3284851ffd097432379e271ce046a8180b37"
+  integrity sha512-2FAuSIGHlY+apM9FVlj8/oNhd+1y+Uwv5QNkMQz1oSfdHk4PXo1qoCw9I5M7j0vpH8CSWFJwXbVPeYDjLCx9PA==
 
 util-deprecate@^1.0.2, util-deprecate@~1.0.1:
   version "1.0.2"

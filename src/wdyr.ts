@@ -1,10 +1,12 @@
-/// <reference types="@welldone-software/why-did-you-render" />
-import React from 'react';
-import whyDidYouRender from '@welldone-software/why-did-you-render';
+import * as React from 'react';
 
-if (process.env.NODE_ENV === 'development') {
-// const whyDidYouRender = require('@welldone-software/why-did-you-render');
-  whyDidYouRender(React, {
+if (import.meta.env.DEV) {
+  const { default: wdyr } = await import('@welldone-software/why-did-you-render');
+
+  wdyr(React, {
+    include: [/.*/],
+    exclude: [/^BrowserRouter/, /^Link/, /^Route/],
+    trackHooks: true,
     trackAllPureComponents: true,
   });
 }
