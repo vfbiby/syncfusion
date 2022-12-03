@@ -7,6 +7,7 @@ if (import.meta.env.DEV) {
     include: [/.*/],
     exclude: [/^BrowserRouter/, /^Link/, /^Route/],
     trackHooks: true,
+    logOnDifferentValues: true,
     trackAllPureComponents: true,
   });
 }
